@@ -15,7 +15,8 @@ const CRM_URLS = {
   VENDOR_CRM: "",     // 2. Vendor CRM URL
   DA_CENTER_CRM: "",  // 3. DA Center CRM URL
   DOCTOR_CRM: "",     // 4. Doctor CRM URL
-  ZIPPY_CRM: ""       // 5. Zippy CRM URL
+  ZIPPY_CRM: "",      // 5. Zippy CRM URL
+  ATTENDANCE_CRM: ""  // 6. Attendance CRM URL
 };
 
 /**
@@ -25,12 +26,12 @@ const CRM_URLS = {
  */
 const ZENVE_CRM_CONFIG = {
   portal: {
-    headerTitle: "CRM Logins",
-    mainTitle: "Choose Your CRM",
+    headerTitle: "Zenve CRM",
+    mainTitle: "Zenve CRM Centre",
     subtitle: "Select a CRM to log in and get started."
   },
 
-  // Centralized Configuration for the 5 CRM Applications
+  // Centralized Configuration for the 6 CRM Applications (3/3 Layout)
   crms: [
     {
       id: "fashion-crm",
@@ -96,6 +97,19 @@ const ZENVE_CRM_CONFIG = {
       glowSecondary: "rgba(0, 77, 59, 0.38)",
       arrowColor: "#00674F",
       urlKey: "ZIPPY_CRM"
+    },
+    {
+      id: "attendance-crm",
+      order: 6,
+      name: "Attendance CRM",
+      badgeImage: "assets/badge-zenve-tm.png",
+      accent: "mocha",
+      baseColor: "#A88462",
+      gradient: "linear-gradient(180deg, #ba9877 0%, #A88462 50%, #876240 100%)",
+      glowColor: "rgba(168, 132, 98, 0.65)",
+      glowSecondary: "rgba(135, 98, 64, 0.4)",
+      arrowColor: "#A88462",
+      urlKey: "ATTENDANCE_CRM"
     }
   ]
 };
