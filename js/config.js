@@ -102,7 +102,7 @@ const ZENVE_CRM_CONFIG = {
       id: "attendance-crm",
       order: 6,
       name: "Attendance CRM",
-      badgeImage: "assets/badge-zenve-tm.png",
+      badgeImage: "assets/badge-zippy-circle.png",
       accent: "mocha",
       baseColor: "#A88462",
       gradient: "linear-gradient(180deg, #ba9877 0%, #A88462 50%, #876240 100%)",
