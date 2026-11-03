@@ -1,10 +1,9 @@
 /**
  * ==============================================================================
- * ZENVE CRM HUB — ENTERPRISE MASTER CONTROLLER
+ * ZENVE CRM CENTER — ENTERPRISE DASHBOARD CONTROLLER
  * ==============================================================================
- * Renders the 6 CRM launcher cards with their exact individual artwork,
- * continuous radiant running laser border glow, 3D perspective tilt physics,
- * and same-tab navigation.
+ * Renders exactly 6 CRM launcher cards in a 3-column x 2-row layout.
+ * Each card has ONE outer element, ONE background image, and smooth hover glow.
  * ==============================================================================
  */
 
@@ -68,7 +67,7 @@
   }
 
   // ============================================================================
-  // RENDER CRM CARDS (6 CARDS WITH INDIVIDUAL ARTWORK & RUNNING GLOW)
+  // RENDER EXACTLY SIX CRM CARDS (NO DUPLICATES, NO DOUBLE BORDERS)
   // ============================================================================
   function renderCrmCards() {
     if (!cardsContainer) return;
@@ -84,106 +83,36 @@
       card.setAttribute("data-id", crm.id);
       card.setAttribute("aria-label", `Launch ${crm.name}`);
 
-      // Apply CSS custom properties for rich per-card ambient glow and colors
-      card.style.setProperty("--card-gradient", crm.gradient || "");
+      // Pass card accent glow color
       card.style.setProperty("--card-glow", crm.glowColor || "rgba(255, 255, 255, 0.6)");
-      card.style.setProperty("--card-glow-sec", crm.glowSecondary || crm.glowColor || "rgba(255, 255, 255, 0.35)");
-      card.style.setProperty("--card-arrow", crm.arrowColor || "#ffffff");
 
+      // Exactly ONE image inside the card (no duplicate backgrounds or nested containers)
       card.innerHTML = `
-        <!-- Continuous Running Neon Border Light Effect (Soft Aura Blur) -->
-        <div class="card-running-border-glow"></div>
-
-        <!-- Continuous Running Neon Border Light Effect (Sharp Laser Trail) -->
-        <div class="card-running-border"></div>
-
-        <!-- Persistent Outer Luminous Glow Aura -->
-        <div class="card-glow-aura"></div>
-
-        <!-- Solid Inner Card with Exact 3D Artwork Background -->
-        <div class="card-inner-box">
-          <!-- Exact High-Resolution Card Artwork Surface -->
-          <img src="${crm.cardImage || crm.badgeImage}?v=art-2k" alt="${crm.name}" class="card-surface-img" loading="eager" />
-
-          <!-- Dynamic Specular Highlight -->
-          <div class="card-specular-sheen"></div>
-          
-          <!-- Animated Light Sweep on Hover -->
-          <div class="card-light-sweep"></div>
-
-          <!-- Accessible Screen Reader Name -->
-          <span class="visually-hidden">${crm.name}</span>
-        </div>
+        <img src="${crm.cardImage}?v=4k" alt="${crm.name}" class="card-bg-img" loading="eager" />
+        <span class="visually-hidden">${crm.name}</span>
       `;
 
-      // Click Event -> Same Tab Navigation with Visual Feedback
+      // Click Event -> Same Tab Navigation
       card.addEventListener("click", function (e) {
         if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
           e.preventDefault();
           const currentUrl = window.getCrmUrl ? window.getCrmUrl(crm) : "";
-          handleCrmLaunch(crm, currentUrl, card);
+          if (currentUrl && currentUrl.trim() !== "") {
+            card.classList.add("card-active");
+            setTimeout(() => {
+              window.location.href = currentUrl;
+            }, 180);
+          } else {
+            // Subtle click ripple feedback when URL is unconfigured
+            card.classList.add("card-clicked");
+            setTimeout(() => {
+              card.classList.remove("card-clicked");
+            }, 300);
+          }
         }
       });
 
-      // 3D Perspective Tilt Physics
-      attachTiltPhysics(card);
-
       cardsContainer.appendChild(card);
-    });
-  }
-
-  // ============================================================================
-  // SAME-TAB LAUNCH CONTROLLER
-  // ============================================================================
-  function handleCrmLaunch(crm, targetUrl, cardElement) {
-    if (!targetUrl || targetUrl.trim() === "") {
-      // Empty URL: provide gentle click ripple feedback
-      cardElement.classList.add("card-clicked-feedback");
-      setTimeout(() => {
-        cardElement.classList.remove("card-clicked-feedback");
-      }, 400);
-      return;
-    }
-
-    cardElement.classList.add("card-launching");
-    setTimeout(() => {
-      window.location.href = targetUrl;
-    }, 180);
-  }
-
-  // ============================================================================
-  // REALISTIC 3D PERSPECTIVE TILT PHYSICS & SPECULAR SHINE
-  // ============================================================================
-  function attachTiltPhysics(card) {
-    const innerBox = card.querySelector(".card-inner-box");
-    const sheen = card.querySelector(".card-specular-sheen");
-
-    card.addEventListener("mousemove", function (e) {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      // Maximum 3D rotation: +/- 6 degrees for smooth realistic tilt
-      const rotateX = ((centerY - y) / centerY) * 6;
-      const rotateY = ((x - centerX) / centerX) * 6;
-
-      innerBox.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-5px) scale(1.02)`;
-
-      // Move specular reflection toward light source
-      if (sheen) {
-        sheen.style.opacity = "0.75";
-        sheen.style.background = `radial-gradient(circle at ${(x / rect.width) * 100}% ${(y / rect.height) * 100}%, rgba(255, 255, 255, 0.45) 0%, transparent 65%)`;
-      }
-    });
-
-    card.addEventListener("mouseleave", function () {
-      innerBox.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) scale(1)";
-      if (sheen) {
-        sheen.style.opacity = "0";
-      }
     });
   }
 

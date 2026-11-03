@@ -8,48 +8,37 @@
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'><circle cx='12' cy='12' r='10'/></svg>">
   
-  <!-- Preconnect & Google Fonts -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Master Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="login-page">
 
-  <!-- Background Canvas Floating Bubble Engine -->
-  <div class="background-canvas-wrap">
-    <canvas id="particle-canvas"></canvas>
-  </div>
-
-  <!-- Master 100vh Viewport Container (Zero Scrolling on Desktop) -->
+  <!-- Fullscreen Dashboard Viewport (100vw x 100vh) -->
   <main class="app-viewport">
     
-    <!-- Top Navigation Bar -->
+    <!-- Top Navigation Bar (Theme Switcher) -->
     <header class="top-navbar">
-      <!-- Spacer Left -->
-      <div class="nav-brand-group" style="display: none;"></div>
-
-      <!-- Controls Right: Theme Toggle -->
-      <div class="nav-controls-group">
-        <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle visual theme">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-        </button>
-      </div>
+      <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle visual theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
     </header>
 
-    <!-- Center Hero Section Spacer (Preserves clean room for Golden Z Logo & CRM Center Ribbon) -->
-    <section class="hero-section" aria-label="Zenve CRM Center Header">
+    <!-- Header Spacing Area (Preserves Full Visibility of Zenve Logo & CRM Center Banner in Background) -->
+    <div class="header-spacing-area" aria-label="Zenve CRM Center">
       <h1 class="visually-hidden">Zenve CRM Center</h1>
-    </section>
+    </div>
 
-    <!-- CRM 6-Card Launcher Grid (3 cols x 2 rows = 6 cards) -->
+    <!-- 6 CRM Cards Container (Exactly 3 Columns x 2 Rows Grid) -->
     <section class="crm-grid-container" aria-label="Zenve CRM Applications">
       <div id="crm-cards-grid" class="crm-cards-grid">
-        <!-- Rendered dynamically from js/config.js via js/app.js -->
+        <!-- Exactly 6 cards rendered dynamically from js/config.js via js/app.js -->
         <noscript>
           <div style="color: #ffffff; text-align: center; grid-column: 1/-1; padding: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">
             Please enable JavaScript to access the CRM Center Portal.
@@ -58,18 +47,15 @@
       </div>
     </section>
 
-    <!-- Bottom Spacing Anchor (Preserves clean room for stone path and flower borders) -->
-    <div class="bottom-spacer"></div>
+    <!-- Bottom Spacing Area (Shows Scenic Pathway & Garden Flowers) -->
+    <div class="bottom-spacing-area"></div>
 
   </main>
 
   <!-- Configuration File (Centralized URL Source) -->
   <script src="js/config.js"></script>
 
-  <!-- Canvas Particles Engine (Bubbles) -->
-  <script src="js/particles.js"></script>
-
-  <!-- Master App & Interactive 3D Physics -->
+  <!-- Master App Controller -->
   <script src="js/app.js"></script>
 
 </body>
