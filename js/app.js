@@ -2,8 +2,9 @@
  * ==============================================================================
  * ZENVE CRM HUB — ENTERPRISE MASTER CONTROLLER
  * ==============================================================================
- * Renders the 5 CRM launcher cards with Zenve TM logos, manages radiant
- * running border glow physics, 3D perspective tilt, and same-tab navigation.
+ * Renders the 6 CRM launcher cards with their exact individual artwork,
+ * continuous radiant running laser border glow, 3D perspective tilt physics,
+ * and same-tab navigation.
  * ==============================================================================
  */
 
@@ -18,9 +19,7 @@
 
   // DOM Elements
   const cardsContainer = document.getElementById("crm-cards-grid");
-  const toastBanner = document.getElementById("launch-notification");
   const themeToggleBtn = document.getElementById("theme-toggle-btn");
-  let toastTimer = null;
 
   // ============================================================================
   // THEME MANAGEMENT (Light / Dark)
@@ -69,7 +68,7 @@
   }
 
   // ============================================================================
-  // RENDER CRM CARDS (RUNNING GLOW BORDER + COMPACT ARCHITECTURE)
+  // RENDER CRM CARDS (6 CARDS WITH INDIVIDUAL ARTWORK & RUNNING GLOW)
   // ============================================================================
   function renderCrmCards() {
     if (!cardsContainer) return;
@@ -85,11 +84,11 @@
       card.setAttribute("data-id", crm.id);
       card.setAttribute("aria-label", `Launch ${crm.name}`);
 
-      // Apply CSS custom properties for rich per-card ambient glow and gradient
-      card.style.setProperty("--card-gradient", crm.gradient);
-      card.style.setProperty("--card-glow", crm.glowColor);
-      card.style.setProperty("--card-glow-sec", crm.glowSecondary || crm.glowColor);
-      card.style.setProperty("--card-arrow", crm.arrowColor);
+      // Apply CSS custom properties for rich per-card ambient glow and colors
+      card.style.setProperty("--card-gradient", crm.gradient || "");
+      card.style.setProperty("--card-glow", crm.glowColor || "rgba(255, 255, 255, 0.6)");
+      card.style.setProperty("--card-glow-sec", crm.glowSecondary || crm.glowColor || "rgba(255, 255, 255, 0.35)");
+      card.style.setProperty("--card-arrow", crm.arrowColor || "#ffffff");
 
       card.innerHTML = `
         <!-- Continuous Running Neon Border Light Effect (Soft Aura Blur) -->
@@ -101,38 +100,23 @@
         <!-- Persistent Outer Luminous Glow Aura -->
         <div class="card-glow-aura"></div>
 
-        <!-- Solid Gradient Inner Card (Zero Empty Gap) -->
+        <!-- Solid Inner Card with Exact 3D Artwork Background -->
         <div class="card-inner-box">
+          <!-- Exact High-Resolution Card Artwork Surface -->
+          <img src="${crm.cardImage || crm.badgeImage}?v=art-2k" alt="${crm.name}" class="card-surface-img" loading="eager" />
+
           <!-- Dynamic Specular Highlight -->
           <div class="card-specular-sheen"></div>
           
-          <!-- Animated Light Sweep -->
+          <!-- Animated Light Sweep on Hover -->
           <div class="card-light-sweep"></div>
 
-          <!-- White Circular Logo Emblem -->
-          <div class="badge-circle-wrapper">
-            <div class="badge-circle-halo"></div>
-            <div class="badge-white-circle">
-              <img src="${crm.badgeImage}?v=gold-circle" alt="${crm.name} Logo" class="badge-logo-image" loading="eager" />
-            </div>
-          </div>
-
-          <!-- CRM Name -->
-          <h2 class="card-title-text">${crm.name}</h2>
-
-          <!-- Action Button: White Circle Arrow -->
-          <div class="card-action-wrap">
-            <div class="arrow-circle-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </div>
-          </div>
+          <!-- Accessible Screen Reader Name -->
+          <span class="visually-hidden">${crm.name}</span>
         </div>
       `;
 
-      // Click Event -> Same Tab Navigation with Visual Feedback or Empty URL notification
+      // Click Event -> Same Tab Navigation with Visual Feedback
       card.addEventListener("click", function (e) {
         if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
           e.preventDefault();
@@ -149,11 +133,15 @@
   }
 
   // ============================================================================
-  // SAME-TAB LAUNCH CONTROLLER (ERROR POPUP DELETED)
+  // SAME-TAB LAUNCH CONTROLLER
   // ============================================================================
   function handleCrmLaunch(crm, targetUrl, cardElement) {
     if (!targetUrl || targetUrl.trim() === "") {
-      // Error popup deleted as requested
+      // Empty URL: provide gentle click ripple feedback
+      cardElement.classList.add("card-clicked-feedback");
+      setTimeout(() => {
+        cardElement.classList.remove("card-clicked-feedback");
+      }, 400);
       return;
     }
 
@@ -161,11 +149,6 @@
     setTimeout(() => {
       window.location.href = targetUrl;
     }, 180);
-  }
-
-  function showToast(contentHtml, isWarning) {
-    // Error popup deleted per user request
-    return;
   }
 
   // ============================================================================
@@ -183,21 +166,21 @@
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
 
-      // Maximum 3D rotation: +/- 7 degrees
-      const rotateX = ((centerY - y) / centerY) * 7;
-      const rotateY = ((x - centerX) / centerX) * 7;
+      // Maximum 3D rotation: +/- 6 degrees for smooth realistic tilt
+      const rotateX = ((centerY - y) / centerY) * 6;
+      const rotateY = ((x - centerX) / centerX) * 6;
 
-      innerBox.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-6px)`;
+      innerBox.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-5px) scale(1.02)`;
 
-      // Move specular radial sheen to cursor coordinates
+      // Move specular reflection toward light source
       if (sheen) {
-        sheen.style.opacity = "1";
-        sheen.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.38) 0%, rgba(255, 255, 255, 0) 65%)`;
+        sheen.style.opacity = "0.75";
+        sheen.style.background = `radial-gradient(circle at ${(x / rect.width) * 100}% ${(y / rect.height) * 100}%, rgba(255, 255, 255, 0.45) 0%, transparent 65%)`;
       }
     });
 
     card.addEventListener("mouseleave", function () {
-      innerBox.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)";
+      innerBox.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) scale(1)";
       if (sheen) {
         sheen.style.opacity = "0";
       }
@@ -205,16 +188,52 @@
   }
 
   // ============================================================================
-  // INITIALIZATION
+  // KEYBOARD ACCESSIBILITY
   // ============================================================================
-  function init() {
-    initTheme();
-    renderCrmCards();
+  function initKeyboardNav() {
+    window.addEventListener("keydown", function (e) {
+      const cards = Array.from(document.querySelectorAll(".crm-card"));
+      const activeElement = document.activeElement;
+      const currentIndex = cards.indexOf(activeElement);
+
+      if (e.key >= "1" && e.key <= "6" && !e.altKey && !e.ctrlKey && !e.metaKey) {
+        const targetCard = cards[parseInt(e.key, 10) - 1];
+        if (targetCard) {
+          targetCard.focus();
+          targetCard.click();
+        }
+        return;
+      }
+
+      if (currentIndex === -1) return;
+
+      let nextIndex = currentIndex;
+      if (e.key === "ArrowRight") {
+        nextIndex = (currentIndex + 1) % cards.length;
+        e.preventDefault();
+      } else if (e.key === "ArrowLeft") {
+        nextIndex = (currentIndex - 1 + cards.length) % cards.length;
+        e.preventDefault();
+      } else if (e.key === "ArrowDown") {
+        if (currentIndex + 3 < cards.length) nextIndex = currentIndex + 3;
+        e.preventDefault();
+      } else if (e.key === "ArrowUp") {
+        if (currentIndex - 3 >= 0) nextIndex = currentIndex - 3;
+        e.preventDefault();
+      }
+
+      if (nextIndex !== currentIndex && cards[nextIndex]) {
+        cards[nextIndex].focus();
+      }
+    });
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
+  // ============================================================================
+  // INITIALIZATION ON DOM READY
+  // ============================================================================
+  document.addEventListener("DOMContentLoaded", () => {
+    initTheme();
+    renderCrmCards();
+    initKeyboardNav();
+  });
 })();

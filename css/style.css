@@ -1,27 +1,26 @@
 /* ==============================================================================
-   CRM LOGINS — MASTER STYLESHEET
-   Unified Launcher for 5 CRM Applications
-   Aesthetics: Soft Blue Glowing Paw Beside/Behind Heading, Running Glowing Border Line,
-   Balanced Sizing, Zero Empty Gap, 100vh Zero-Scroll
-   Theme: Custom Pet & Veterinary Background
+   ZENVE CRM HUB — ENTERPRISE MASTER STYLESHEET
+   Unified Launcher for 6 CRM Applications (3/3 Grid)
+   Aesthetics: Exact Scenic Landscape Background, 6 High-Definition 3D Cards,
+   Continuous Running Laser Glow Borders, Real-time 3D Tilt Physics, 100vh Zero-Scroll
    ============================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* Default: Radiant Daylight Mode with 4K Custom Background */
-  --bg-base: #f0f4fd;
-  --text-main: #0f172a;
-  --text-heading: #0f172a;
-  --text-subtitle: #475569;
+  /* Daylight Palette */
+  --bg-base: #0f172a;
+  --text-main: #ffffff;
+  --text-heading: #ffffff;
+  --text-subtitle: rgba(255, 255, 255, 0.85);
   
   --header-bg: rgba(255, 255, 255, 0.7);
   --header-border: rgba(226, 232, 240, 0.8);
-  --header-text: #0f172a;
+  --header-text: #ffffff;
   
   --pill-bg: rgba(255, 255, 255, 0.88);
   --pill-border: rgba(203, 213, 225, 0.8);
-  --pill-text: #334155;
+  --pill-text: #1e293b;
   
   /* Shared Timing Curves */
   --transition-smooth: all 0.36s cubic-bezier(0.16, 1, 0.3, 1);
@@ -36,12 +35,8 @@
   --text-heading: #ffffff;
   --text-subtitle: #cbd5e1;
   
-  --header-bg: rgba(15, 23, 42, 0.75);
-  --header-border: rgba(255, 255, 255, 0.12);
-  --header-text: #f8fafc;
-  
-  --pill-bg: rgba(15, 23, 42, 0.8);
-  --pill-border: rgba(255, 255, 255, 0.18);
+  --pill-bg: rgba(15, 23, 42, 0.85);
+  --pill-border: rgba(255, 255, 255, 0.2);
   --pill-text: #cbd5e1;
 }
 
@@ -53,6 +48,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ==============================================================================
+   VIEWPORT & BACKGROUND
+   ============================================================================== */
 .login-page,
 html, body {
   width: 100%;
@@ -62,8 +60,8 @@ html, body {
   max-height: 100vh;
   overflow: hidden;
   background-color: var(--bg-base);
-  background-image: url('../images/background-4k.jpg?v=up-down-view');
-  background-size: 100% 100%; /* Shows 100% of both UP picture and DOWN picture without cropping */
+  background-image: url('../images/background-4k.jpg?v=crm-center-hd');
+  background-size: 100% 100%; /* Shows 100% of top scene, logo, banner, cards, and bottom flowers without cropping */
   background-position: center center;
   background-repeat: no-repeat;
   image-rendering: -webkit-optimize-contrast;
@@ -79,14 +77,14 @@ html, body {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(3, 7, 18, 0.75);
-  backdrop-filter: blur(2px);
+  background: rgba(3, 7, 18, 0.45);
+  backdrop-filter: blur(1.5px);
   pointer-events: none;
   z-index: 1;
 }
 
 /* ==============================================================================
-   BACKGROUND CANVAS & FLOATING GLASS BUBBLES
+   BACKGROUND CANVAS FLOATING BUBBLES
    ============================================================================== */
 .background-canvas-wrap {
   position: absolute;
@@ -115,111 +113,24 @@ html, body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: clamp(6px, 1.2vh, 14px) clamp(20px, 3.5vw, 56px) clamp(6px, 1.2vh, 14px);
+  padding: clamp(6px, 1.2vh, 12px) clamp(16px, 3.2vw, 48px) clamp(6px, 1.2vh, 12px);
 }
 
 /* ==============================================================================
-   TOP NAVIGATION BAR
+   TOP NAVIGATION BAR (THEME TOGGLE)
    ============================================================================== */
 .top-navbar {
   width: 100%;
   max-width: 1680px;
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* Theme toggle aligned to right, left brand removed */
+  justify-content: flex-end;
   flex-shrink: 0;
-  margin-top: clamp(6px, 1.2vh, 14px);
-  padding-top: 0;
+  padding: 4px 8px 0;
 }
 
-/* Brand left removed per user request */
 .nav-brand-group {
   display: none !important;
-}
-
-/* Floating Soft Blue Glowing Paw Backdrop */
-.brand-glow-backdrop {
-  position: absolute;
-  left: -22px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 96px;
-  height: 80px;
-  pointer-events: none;
-  z-index: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Soft Blue Glowing Ambient Blob */
-.soft-blue-glow-blob {
-  position: absolute;
-  width: 74px;
-  height: 74px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.5) 0%, rgba(96, 165, 250, 0.28) 45%, transparent 72%);
-  filter: blur(14px);
-  opacity: 0.85;
-  animation: blueAuraBreathe 4s ease-in-out infinite alternate;
-}
-
-/* Subtle Blurred Blue Paw-Shaped Decorative Element with Gentle Float */
-.floating-paw-decor {
-  position: relative;
-  width: 48px;
-  height: 48px;
-  opacity: 0.65;
-  filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.8));
-  animation: gentlePawFloat 4.8s ease-in-out infinite alternate;
-  transform-origin: center center;
-}
-
-@keyframes gentlePawFloat {
-  0% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
-    opacity: 0.62;
-  }
-  50% {
-    transform: translate(-3px, -5px) scale(1.08) rotate(-4deg);
-    opacity: 0.88;
-    filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.95));
-  }
-  100% {
-    transform: translate(2px, 3px) scale(0.96) rotate(3deg);
-    opacity: 0.62;
-  }
-}
-
-@keyframes blueAuraBreathe {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.7;
-    filter: blur(12px);
-  }
-  100% {
-    transform: scale(1.2);
-    opacity: 0.95;
-    filter: blur(18px);
-  }
-}
-
-/* Circle-Shaped Logo in Tab Bar (Removed per user request) */
-.nav-brand-circle-badge {
-  display: none !important;
-}
-
-/* Sharp, Readable, Beautiful Brand Title in Front */
-.nav-brand-title {
-  position: relative;
-  z-index: 2; /* In front of decorative paw & glow, remaining 100% sharp & readable */
-  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(1.15rem, 1.5vw, 1.45rem);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--header-text);
-  white-space: nowrap;
-  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.95);
 }
 
 .nav-controls-group {
@@ -230,8 +141,8 @@ html, body {
 
 /* Theme Toggle Button */
 .theme-toggle-btn {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: var(--pill-bg);
   border: 1px solid var(--pill-border);
@@ -241,13 +152,13 @@ html, body {
   justify-content: center;
   cursor: pointer;
   color: var(--pill-text);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
   transition: var(--transition-fast);
 }
 
 .theme-toggle-btn:hover {
   transform: scale(1.08);
-  border-color: rgba(99, 102, 241, 0.5);
+  border-color: rgba(99, 102, 241, 0.7);
   color: #6366f1;
 }
 
@@ -257,130 +168,96 @@ html, body {
 }
 
 /* ==============================================================================
-   CENTER HERO SECTION (TITLE & GLOWING UNDERLINE)
+   HERO SECTION SPACER (PRESERVES GOLDEN Z LOGO & CRM CENTER BANNER IN BACKGROUND)
    ============================================================================== */
 .hero-section {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
+  height: clamp(80px, 22vh, 180px);
   flex-shrink: 0;
-  margin-top: clamp(2px, 0.4vh, 6px);
-  margin-bottom: clamp(5px, 0.9vh, 10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
 
-.hero-main-title {
-  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(1.5rem, 2.3vw, 2.2rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--text-heading);
-  line-height: 1.15;
-  margin-bottom: clamp(3px, 0.5vh, 6px);
-  text-shadow: 0 2px 14px rgba(255, 255, 255, 0.85);
-}
-
-[data-theme="dark"] .hero-main-title {
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
-}
-
-/* Luminous Gradient Pill Underline */
-.hero-accent-pill {
-  width: clamp(50px, 4.2vw, 68px);
-  height: 4px;
-  border-radius: 9999px;
-  background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%);
-  box-shadow: 0 0 16px rgba(59, 130, 246, 0.75), 0 0 6px rgba(6, 182, 212, 0.9);
-  margin-bottom: clamp(4px, 0.6vh, 7px);
-  animation: glowBarPulse 3s ease-in-out infinite alternate;
-}
-
-@keyframes glowBarPulse {
-  0% {
-    box-shadow: 0 0 12px rgba(59, 130, 246, 0.65), 0 0 4px rgba(6, 182, 212, 0.8);
-    transform: scaleX(0.95);
-  }
-  100% {
-    box-shadow: 0 0 22px rgba(59, 130, 246, 0.95), 0 0 10px rgba(6, 182, 212, 1);
-    transform: scaleX(1.05);
-  }
-}
-
-.hero-subtitle {
-  font-size: clamp(0.82rem, 0.95vw, 0.96rem);
-  font-weight: 600;
-  color: var(--text-subtitle);
-  letter-spacing: -0.01em;
-  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.9);
-}
-
-[data-theme="dark"] .hero-subtitle {
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.6);
+/* Accessible Screen Reader Heading */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ==============================================================================
-   CRM 6-CARD GRID WRAPPER (DIVIDED INTO 3/3 BALANCED ARCHITECTURE)
+   CRM 6-CARD GRID CONTAINER (3/3 BALANCED LAYOUT)
    ============================================================================== */
 .crm-grid-container {
   width: 100%;
-  max-width: 1140px;
+  max-width: 1220px;
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 0;
   margin: 0 auto;
-  transform: translateY(clamp(-52px, -5.5vh, -28px)); /* Elevates 3/3 cards into the center for generous room above bottom dog */
 }
 
 .crm-cards-grid {
   width: 100%;
-  max-width: 1060px;
+  max-width: 1120px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(12px, 1.5vh, 16px) clamp(14px, 1.8vw, 24px);
-  align-items: stretch;
+  gap: clamp(10px, 1.4vh, 18px) clamp(12px, 1.6vw, 24px);
+  align-items: center;
   justify-content: center;
   margin: 0 auto;
 }
 
 /* ==============================================================================
-   INDIVIDUAL CRM CARD ARCHITECTURE (100% EQUAL HEIGHT & WIDTH ACROSS 3/3 GRID)
+   INDIVIDUAL CRM CARD ARCHITECTURE (16:9 RATIO & EQUAL HEIGHT ACROSS 3/3 GRID)
    ============================================================================== */
 .crm-card {
   position: relative;
-  border-radius: 24px;
+  border-radius: 22px;
   text-decoration: none;
   cursor: pointer;
   outline: none;
   perspective: 1000px;
   transition: transform 0.36s cubic-bezier(0.16, 1, 0.3, 1), filter 0.36s ease;
   width: 100%;
-  height: 100%;
-  min-height: clamp(150px, 18vh, 185px);
-  max-height: clamp(165px, 20vh, 195px);
+  aspect-ratio: 750 / 422; /* 1.777:1 — perfectly matches exact card dimensions */
   display: flex;
   flex-direction: column;
 }
 
+.crm-card:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 4px;
+}
+
 /* ==============================================================================
-   CONTINUOUS RUNNING BORDER GLOW LINE ("running la erukanu")
+   CONTINUOUS RUNNING NEON LASER BORDER GLOW
    ============================================================================== */
 .card-running-border-glow {
   position: absolute;
-  inset: -3.5px;
-  border-radius: 27px;
+  inset: -3px;
+  border-radius: 25px;
   overflow: hidden;
-  filter: blur(12px);
-  opacity: 0.95;
+  filter: blur(10px);
+  opacity: 0.9;
   z-index: 1;
   pointer-events: none;
 }
 
 .card-running-border {
   position: absolute;
-  inset: -2px;
-  border-radius: 26px;
+  inset: -1.5px;
+  border-radius: 24px;
   overflow: hidden;
   z-index: 1;
   pointer-events: none;
@@ -397,9 +274,9 @@ html, body {
   background: conic-gradient(
     from 0deg,
     transparent 0deg,
-    transparent 150deg,
-    var(--card-glow) 240deg,
-    #ffffff 310deg,
+    transparent 140deg,
+    var(--card-glow) 230deg,
+    #ffffff 300deg,
     var(--card-glow) 345deg,
     transparent 360deg
   );
@@ -407,7 +284,7 @@ html, body {
   will-change: transform;
 }
 
-/* Stagger start times so the light lines run continuously around each card (6 Cards) */
+/* Stagger start times so the light beams run fluidly across all 6 cards */
 .crm-card:nth-child(1) .card-running-border::before,
 .crm-card:nth-child(1) .card-running-border-glow::before { animation-delay: 0s; }
 
@@ -435,74 +312,79 @@ html, body {
   }
 }
 
-/* Persistent Outer Luminous Ambient Aura */
+/* Ambient Colored Glow Aura Behind Card */
 .card-glow-aura {
   position: absolute;
   inset: -6px;
-  border-radius: 34px;
+  border-radius: 30px;
   background: var(--card-glow);
-  opacity: 0.55;
+  opacity: 0.5;
   filter: blur(20px);
   pointer-events: none;
   z-index: 0;
-  transition: opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.36s ease, filter 0.36s ease, transform 0.36s ease;
   animation: cardAuraPulse 4s ease-in-out infinite alternate;
 }
 
 @keyframes cardAuraPulse {
   0% {
-    opacity: 0.48;
-    filter: blur(18px);
+    opacity: 0.42;
+    filter: blur(16px);
     transform: scale(0.98);
   }
   100% {
-    opacity: 0.7;
-    filter: blur(25px);
+    opacity: 0.68;
+    filter: blur(24px);
     transform: scale(1.02);
   }
 }
 
-/* Solid Gradient Card Inner Box (100% Equal Height & Width Architecture for 3/3 Grid) */
+/* ==============================================================================
+   SOLID INNER CARD BOX (HOUSES THE EXACT 3D ARTWORK SURFACE)
+   ============================================================================== */
 .card-inner-box {
   position: relative;
   z-index: 2;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: clamp(10px, 1.3vh, 15px) clamp(12px, 1.4vw, 18px);
-  background: var(--card-gradient);
   border-radius: 20px;
-  border: 1.5px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 
-    0 14px 30px -4px var(--card-glow),
-    0 0 22px var(--card-glow-sec),
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.55),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  box-shadow: 
+    0 12px 28px -4px var(--card-glow),
+    0 0 18px var(--card-glow-sec),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.55),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.3);
   transition: transform 0.36s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.36s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.36s ease;
+              box-shadow 0.36s cubic-bezier(0.16, 1, 0.3, 1);
   transform-style: preserve-3d;
   will-change: transform;
 }
 
-/* Specular Light Reflection & Shimmer */
+/* Exact High-Resolution Card Artwork Image Surface */
+.card-surface-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+  pointer-events: none;
+  transition: transform 0.4s ease;
+}
+
+/* Dynamic Specular Light Sheen */
 .card-specular-sheen {
   position: absolute;
   inset: 0;
-  border-radius: 28px;
+  border-radius: 20px;
   pointer-events: none;
   opacity: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.35) 0%, transparent 65%);
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.4) 0%, transparent 65%);
   transition: opacity 0.3s ease;
   z-index: 3;
 }
 
-/* Animated Light Sweep */
+/* Animated Light Sweep on Hover */
 .card-light-sweep {
   position: absolute;
   top: -50%;
@@ -511,9 +393,9 @@ html, body {
   height: 200%;
   background: linear-gradient(
     45deg,
-    transparent 42%,
-    rgba(255, 255, 255, 0.16) 50%,
-    transparent 58%
+    transparent 40%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 60%
   );
   transform: rotate(25deg) translateY(-100%);
   pointer-events: none;
@@ -525,425 +407,86 @@ html, body {
   transform: rotate(25deg) translateY(100%);
 }
 
-/* ==============================================================================
-   FASHION DESIGNERS CRM — ULTRA-PREMIUM 24K GOLD LUXURY FINISH ✨
-   Color Palette:
-   - Main color: Rich 24K Metallic Gold (#D4AF37)
-   - Highlight: Champagne Gold (#FFF1B8)
-   - Mid-tone: Royal Gold (#E6B422)
-   - Shadow: Deep Antique Gold (#8C6414)
-   - Border: Polished Gold (#FFE08A)
-   ============================================================================== */
-.crm-card[data-id="fashion-crm"] .card-inner-box {
-  background: linear-gradient(
-    135deg,
-    #FFF1B8 0%,
-    #E6B422 18%,
-    #D4AF37 38%,
-    #FFF1B8 52%,
-    #E6B422 64%,
-    #D4AF37 80%,
-    #8C6414 100%
-  );
-  border: 2px solid #FFE08A;
-  box-shadow: 
-    0 18px 45px -4px rgba(140, 100, 20, 0.48),
-    0 8px 24px rgba(212, 175, 55, 0.38),
-    0 0 28px rgba(230, 180, 34, 0.3),
-    inset 0 2.5px 3px rgba(255, 241, 184, 0.95),
-    inset 0 -3px 6px rgba(140, 100, 20, 0.55),
-    inset 0 0 16px rgba(255, 224, 138, 0.4);
-}
-
-.crm-card[data-id="fashion-crm"] .card-specular-sheen {
-  opacity: 0.65;
-  background: linear-gradient(
-    115deg,
-    rgba(255, 241, 184, 0.45) 0%,
-    rgba(255, 241, 184, 0.15) 30%,
-    transparent 50%,
-    rgba(255, 241, 184, 0.3) 75%,
-    rgba(212, 175, 55, 0.15) 100%
-  );
-}
-
-.crm-card[data-id="fashion-crm"]:hover .card-specular-sheen {
-  opacity: 0.9;
-}
-
-.crm-card[data-id="fashion-crm"] .card-light-sweep {
-  background: linear-gradient(
-    45deg,
-    transparent 36%,
-    rgba(255, 241, 184, 0.4) 46%,
-    rgba(255, 255, 255, 0.75) 50%,
-    rgba(255, 241, 184, 0.4) 54%,
-    transparent 64%
-  );
-}
-
-.crm-card[data-id="fashion-crm"] .badge-circle-halo {
-  background: radial-gradient(circle, rgba(255, 241, 184, 0.95) 0%, rgba(212, 175, 55, 0.65) 60%, transparent 75%);
-  filter: blur(12px);
-  opacity: 0.85;
-}
-
-.crm-card[data-id="fashion-crm"] .arrow-circle-btn {
-  color: #8C6414;
-  box-shadow: 
-    0 8px 18px rgba(140, 100, 20, 0.35),
-    0 2px 4px rgba(0, 0, 0, 0.1),
-    inset 0 0 0 1.5px rgba(255, 241, 184, 0.85);
-}
-
-.crm-card[data-id="fashion-crm"] .card-title-text {
-  text-shadow: 0 2px 8px rgba(140, 100, 20, 0.7), 0 1px 3px rgba(0, 0, 0, 0.6);
-}
-
-/* ==============================================================================
-   WHITE CIRCULAR LOGO EMBLEM
-   ============================================================================== */
-.badge-circle-wrapper {
-  position: relative;
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-/* Glowing Rim Halo Behind White Circle */
-.badge-circle-halo {
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  filter: blur(10px);
-  opacity: 0.7;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-/* Crisp White Circle */
-.badge-white-circle {
-  position: relative;
-  width: clamp(56px, 7vh, 72px);
-  height: clamp(56px, 7vh, 72px);
-  border-radius: 50%;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 
-    0 8px 18px rgba(0, 0, 0, 0.16),
-    0 2px 4px rgba(0, 0, 0, 0.08),
-    inset 0 0 0 1.5px rgba(255, 255, 255, 0.95);
-  overflow: hidden;
-  padding: clamp(3px, 0.5vh, 5px);
-  clip-path: circle(50% at 50% 50%);
-  -webkit-clip-path: circle(50% at 50% 50%);
-  transition: transform 0.36s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.36s ease;
-  flex-shrink: 0;
-}
-
-.badge-logo-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 50%;
-  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.06));
-  transition: transform 0.36s ease;
-}
-
-/* ==============================================================================
-   CRM TITLE TEXT (BALANCED & ALIGNED)
-   ============================================================================== */
-.card-title-text {
-  position: relative;
-  z-index: 4;
-  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(0.92rem, 1.05vw, 1.1rem);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: #ffffff;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-  text-align: center;
-  margin: clamp(2px, 0.4vh, 6px) 0;
-  width: 100%;
-  max-width: 95%;
-  height: 2.2em; /* Guarantees exact identical vertical height across all cards */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-/* ==============================================================================
-   ACTION BUTTON (WHITE CIRCLE ARROW)
-   ============================================================================== */
-.card-action-wrap {
-  position: relative;
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.arrow-circle-btn {
-  width: clamp(32px, 3.8vh, 38px);
-  height: clamp(32px, 3.8vh, 38px);
-  border-radius: 50%;
-  background: #ffffff;
-  color: var(--card-arrow);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 
-    0 6px 14px rgba(0, 0, 0, 0.2),
-    0 2px 4px rgba(0, 0, 0, 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.9);
-  transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.32s ease,
-              background-color 0.2s ease;
-  flex-shrink: 0;
-}
-
-.arrow-circle-btn svg {
-  width: clamp(16px, 1.9vh, 20px);
-  height: clamp(16px, 1.9vh, 20px);
-  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* ==============================================================================
-   HOVER DYNAMICS & INTENSIFIED GLOW
-   ============================================================================== */
-.crm-card:hover {
-  transform: translateY(-8px) scale(1.025);
-}
-
-.crm-card:hover .card-running-border::before,
-.crm-card:hover .card-running-border-glow::before {
-  animation-duration: 1.8s;
-}
-
-.crm-card:hover .card-running-border-glow {
-  filter: blur(16px);
-  opacity: 1;
-}
-
 .crm-card:hover .card-glow-aura {
-  opacity: 0.98;
-  filter: blur(34px);
-  transform: scale(1.08);
+  opacity: 0.85;
+  filter: blur(28px);
 }
 
+.crm-card:hover .card-surface-img {
+  transform: scale(1.02);
+}
+
+/* Hover elevation fallback when mouse tilt is idle */
 .crm-card:hover .card-inner-box {
-  border-color: rgba(255, 255, 255, 0.8);
   box-shadow: 
-    0 26px 65px -8px var(--card-glow),
-    0 0 45px var(--card-glow),
-    inset 0 2px 1px rgba(255, 255, 255, 0.7),
-    inset 0 -2px 6px rgba(0, 0, 0, 0.25);
+    0 20px 42px -6px var(--card-glow),
+    0 0 28px var(--card-glow-sec),
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.7);
 }
 
-.crm-card:hover .badge-white-circle {
-  transform: scale(1.06);
-  box-shadow: 
-    0 16px 36px rgba(0, 0, 0, 0.25),
-    0 0 24px rgba(255, 255, 255, 0.6),
-    inset 0 0 0 2px rgba(255, 255, 255, 1);
-}
-
-.crm-card:hover .badge-circle-halo {
-  opacity: 1;
-  transform: scale(1.15);
-}
-
-.crm-card:hover .badge-logo-image {
-  transform: scale(1.04);
-}
-
-.crm-card:hover .arrow-circle-btn {
-  transform: scale(1.14);
-  box-shadow: 
-    0 12px 30px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(255, 255, 255, 0.85);
-}
-
-.crm-card:hover .arrow-circle-btn svg {
-  transform: translateX(4px);
-}
-
-/* Card Launch Ripple Feedback */
-.crm-card.card-launching .card-inner-box {
+/* Click Feedback */
+.crm-card.card-clicked-feedback .card-inner-box {
   transform: scale(0.96) !important;
-  box-shadow: 0 0 50px rgba(255, 255, 255, 0.8) !important;
-  border-color: #ffffff !important;
-  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+  transition: transform 0.15s ease !important;
 }
 
-/* Bottom Spacer (balanced breathing space for bottom pet artwork) */
+.crm-card.card-launching .card-inner-box {
+  transform: scale(0.95) !important;
+  filter: brightness(1.2) drop-shadow(0 0 20px var(--card-glow)) !important;
+  transition: transform 0.2s ease, filter 0.2s ease !important;
+}
+
+/* ==============================================================================
+   BOTTOM SPACING ANCHOR (PRESERVES CLEAN ROOM FOR FLOWERS & STONE PATH)
+   ============================================================================== */
 .bottom-spacer {
-  height: clamp(55px, 8vh, 90px);
+  width: 100%;
+  height: clamp(16px, 3.5vh, 40px);
   flex-shrink: 0;
-  pointer-events: none;
 }
 
 /* ==============================================================================
-   INSTANT TOAST LAUNCH FEEDBACK (DELETED PER USER REQUEST)
+   RESPONSIVE DESIGN (TABLET & MOBILE)
    ============================================================================== */
-.launch-toast-banner {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-.launch-toast-banner.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-.launch-toast-banner.warning {
-  background: rgba(220, 38, 38, 0.92);
-  border-color: rgba(254, 202, 202, 0.4);
-}
-
-.toast-glow-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #38bdf8;
-  box-shadow: 0 0 10px #38bdf8;
-  animation: pulseDot 1s infinite;
-}
-
-.toast-glow-dot.warn {
-  background: #facc15;
-  box-shadow: 0 0 10px #facc15;
-}
-
-/* ==============================================================================
-   RESPONSIVE DESIGN (ALWAYS ZERO SCROLL)
-   ============================================================================== */
-@media (max-height: 760px) {
-  .app-viewport {
-    padding: 10px 24px 16px;
+@media (max-width: 960px) {
+  .login-page,
+  html, body {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    background-size: cover;
+    background-attachment: fixed;
   }
+
+  .app-viewport {
+    height: auto;
+    min-height: 100vh;
+    padding: 16px 20px 32px;
+  }
+
   .hero-section {
-    margin-bottom: 12px;
+    height: clamp(120px, 20vh, 180px);
   }
-  .hero-main-title {
-    font-size: 1.85rem;
-    margin-bottom: 4px;
-  }
-  .hero-accent-pill {
-    margin-bottom: 6px;
-  }
-  .hero-subtitle {
-    font-size: 0.85rem;
-  }
-  .badge-white-circle {
-    width: 90px;
-    height: 90px;
-    padding: 6px;
-  }
-  .card-title-text {
-    font-size: 1.05rem;
-  }
-  .card-inner-box {
-    padding: 14px 12px;
-    gap: 10px;
-  }
-  .arrow-circle-btn {
-    width: 38px;
-    height: 38px;
-  }
-  .bottom-spacer {
-    height: 16px;
+
+  .crm-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 720px;
   }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 620px) {
   .crm-cards-grid {
-    gap: 12px;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    max-width: 380px;
   }
-  .card-title-text {
-    font-size: 0.98rem;
-  }
-  .badge-white-circle {
-    width: 88px;
-    height: 88px;
-  }
-}
 
-/* Mobile Breakpoint (6-Card Compact Vertical Flow, Zero Scroll) */
-@media (max-width: 768px) {
-  .app-viewport {
-    padding: 8px 14px;
+  .hero-section {
+    height: clamp(100px, 16vh, 140px);
   }
-  .crm-grid-container {
-    transform: none;
-    max-width: 100%;
-    padding: 0 4px;
-  }
-  .hero-main-title {
-    font-size: 1.45rem;
-  }
-  .crm-cards-grid {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(5px, 0.9vh, 8px);
-    max-height: none;
-    height: auto;
-    flex: 1;
-    justify-content: center;
-    width: 100%;
-  }
-  .crm-card {
-    width: 100%;
-    height: clamp(44px, 6.8vh, 54px);
-    min-height: 0;
-    max-height: 56px;
-    flex: 1;
-  }
-  .card-inner-box {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 4px 12px;
-    border-radius: 14px;
-    height: 100%;
-    min-height: 0;
-  }
-  .badge-white-circle {
-    width: 38px;
-    height: 38px;
-    padding: 2.5px;
-    flex-shrink: 0;
-  }
-  .card-title-text {
-    font-size: clamp(0.88rem, 3.4vw, 0.98rem);
-    margin: 0 10px;
-    height: auto;
-    min-height: auto;
-    max-width: none;
-    text-align: left;
-    justify-content: flex-start;
-    flex: 1;
-  }
-  .arrow-circle-btn {
-    width: 30px;
-    height: 30px;
-    flex-shrink: 0;
-  }
-  .arrow-circle-btn svg {
-    width: 15px;
-    height: 15px;
-  }
-  .bottom-spacer {
-    display: none;
+
+  .top-navbar {
+    padding: 0;
   }
 }
