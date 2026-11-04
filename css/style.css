@@ -75,9 +75,11 @@ html, body {
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding: clamp(6px, 1.2vh, 14px) clamp(16px, 3.5vw, 48px);
+  padding: clamp(6px, 1vh, 12px) clamp(16px, 3.5vw, 48px);
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* ==============================================================================
@@ -127,8 +129,10 @@ html, body {
    ============================================================================== */
 .header-spacing-area {
   width: 100%;
-  /* Flexible height ensuring ample room for logo + banner without cards overlapping */
-  height: clamp(90px, 20vh, 180px);
+  /* Banner ends at ~34.3vh (370px on 1080p).
+     Setting height to clamp(240px, 37.5vh, 415px) guarantees cards start at ~41.5vh (448px on 1080p),
+     providing the exact clear breathing gap of blue lake water indicated by the user's red circle. */
+  height: clamp(240px, 37.5vh, 415px);
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -155,8 +159,8 @@ html, body {
 .crm-grid-container {
   width: 100%;
   /* Perfectly sized so background lake remains visible all around and between cards */
-  max-width: clamp(720px, 82vw, 1180px);
-  flex: 1;
+  max-width: clamp(720px, 78vw, 1140px);
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -182,16 +186,18 @@ html, body {
   width: 100%;
   /* Strict 16:9 aspect ratio */
   aspect-ratio: 16 / 9;
-  border-radius: 24px;
+  border-radius: 22px;
   overflow: hidden;
   display: block;
   text-decoration: none;
   cursor: pointer;
   outline: none;
   
-  /* Exactly ONE subtle outer border */
-  border: 2px solid rgba(255, 255, 255, 0.55);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.32);
+  /* Exactly ONE subtle outer border matching card accent glow and blending with background */
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    0 10px 24px rgba(0, 0, 0, 0.35),
+    0 0 14px var(--card-glow);
   
   /* Smooth subtle hover zoom & glowing border transitions */
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
@@ -250,7 +256,8 @@ html, body {
    ============================================================================== */
 .bottom-spacing-area {
   width: 100%;
-  height: clamp(14px, 3vh, 36px);
+  flex: 1;
+  min-height: clamp(16px, 2.5vh, 32px);
   flex-shrink: 0;
 }
 
@@ -260,31 +267,31 @@ html, body {
 /* Medium Desktop / Laptop (1366 x 768) */
 @media (max-height: 820px) {
   .app-viewport {
-    padding: 6px 18px 8px;
+    padding: 4px 16px 6px;
   }
   
   .header-spacing-area {
-    height: clamp(80px, 18vh, 120px);
+    height: clamp(180px, 35vh, 280px);
   }
   
   .crm-grid-container {
-    max-width: clamp(660px, 78vw, 920px);
+    max-width: clamp(660px, 76vw, 880px);
   }
   
   .crm-cards-grid {
-    gap: 10px 14px;
+    gap: 8px 12px;
   }
   
   .crm-card {
-    border-radius: 20px;
-  }
-  
-  .card-bg-img {
     border-radius: 18px;
   }
   
+  .card-bg-img {
+    border-radius: 16px;
+  }
+  
   .bottom-spacing-area {
-    height: 12px;
+    min-height: 10px;
   }
 }
 
