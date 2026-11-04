@@ -86,10 +86,15 @@
       // Pass card accent glow color
       card.style.setProperty("--card-glow", crm.glowColor || "rgba(255, 255, 255, 0.6)");
 
-      // Exactly ONE image inside the card (no duplicate backgrounds or nested containers)
+      // Separate card artwork, original logo, and editable HTML title
       card.innerHTML = `
-        <img src="${crm.cardImage}?v=4k" alt="${crm.name}" class="card-bg-img" loading="eager" />
-        <span class="visually-hidden">${crm.name}</span>
+        <img src="${crm.cardImage}?v=clean" alt="${crm.name}" class="card-bg-img" loading="eager" />
+        <div class="card-logo-container">
+          <img src="${crm.badgeImage}?v=orig" alt="${crm.name} Logo" class="card-logo-img" />
+        </div>
+        <div class="card-title-container">
+          <h3 class="card-title-text">${crm.name}</h3>
+        </div>
       `;
 
       // Click Event -> Same Tab Navigation
