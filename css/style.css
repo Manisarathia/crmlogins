@@ -423,20 +423,9 @@ html, body {
   filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.45));
 }
 
-/* Separate Editable HTML Title - Positioned on Right Side Below Logo */
+/* Separate HTML Title - Screen reader accessible; visual typography is natively baked into the 4K card artwork */
 .card-title-container {
-  position: absolute;
-  top: calc(clamp(8px, 1.2vh, 12px) + clamp(48px, 5.2vw, 65px) + 8px);
-  bottom: clamp(8px, 1.2vh, 14px);
-  right: clamp(8px, 1.2vw, 14px);
-  width: clamp(130px, 16vw, 190px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  z-index: 2;
-  pointer-events: none;
+  display: none;
 }
 
 .card-title-text {
