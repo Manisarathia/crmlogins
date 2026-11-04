@@ -11,12 +11,12 @@
  */
 
 const CRM_URLS = {
-  FASHION_CRM: "",    // 1. Fashion Designers CRM URL
-  VENDOR_CRM: "",     // 2. Vendor CRM URL
-  DOCTOR_CRM: "",     // 3. Doctor CRM URL
-  ZIPPY_CRM: "",      // 4. Zippy CRM URL
-  DA_CENTER_CRM: "",  // 5. DA Center CRM URL
-  ATTENDANCE_CRM: ""  // 6. Attendance CRM URL
+  FASHION_CRM: "",    // 1. Fashion Designers URL
+  VENDOR_CRM: "",     // 2. Vendor URL
+  DOCTOR_CRM: "",     // 3. Doctor URL
+  ZIPPY_CRM: "",      // 4. Zippy URL
+  DA_CENTER_CRM: "",  // 5. DA Center URL
+  ATTENDANCE_CRM: ""  // 6. Attendance URL
 };
 
 /**
@@ -31,12 +31,12 @@ const ZENVE_CRM_CONFIG = {
     subtitle: "Select a CRM to log in and get started."
   },
 
-  // Centralized Configuration for the 6 CRM Applications (3/3 Layout matching exact artwork)
+  // Centralized Configuration for the 6 CRM Applications (3/3 Layout)
   crms: [
     {
       id: "fashion-crm",
       order: 1,
-      name: "Fashion Designers CRM",
+      name: "Fashion Designers",
       cardImage: "assets/card-fashion.png",
       badgeImage: "assets/badge-fashion.png",
       accent: "fuchsia",
@@ -50,7 +50,7 @@ const ZENVE_CRM_CONFIG = {
     {
       id: "vendor-crm",
       order: 2,
-      name: "Vendor CRM",
+      name: "Vendor",
       cardImage: "assets/card-vendor.png",
       badgeImage: "assets/badge-zenve-tm.png",
       accent: "orange",
@@ -64,7 +64,7 @@ const ZENVE_CRM_CONFIG = {
     {
       id: "doctor-crm",
       order: 3,
-      name: "Doctor CRM",
+      name: "Doctor",
       cardImage: "assets/card-doctor.png",
       badgeImage: "assets/badge-zenve-tm.png",
       accent: "cyan",
@@ -78,7 +78,7 @@ const ZENVE_CRM_CONFIG = {
     {
       id: "zippy-crm",
       order: 4,
-      name: "Zippy CRM",
+      name: "Zippy",
       cardImage: "assets/card-zippy.png",
       badgeImage: "assets/badge-zippy-circle.png",
       accent: "purple",
@@ -92,7 +92,7 @@ const ZENVE_CRM_CONFIG = {
     {
       id: "da-center",
       order: 5,
-      name: "DA Center CRM",
+      name: "DA Center",
       cardImage: "assets/card-da-center.png",
       badgeImage: "assets/badge-zenve-tm.png",
       accent: "emerald",
@@ -106,7 +106,7 @@ const ZENVE_CRM_CONFIG = {
     {
       id: "attendance-crm",
       order: 6,
-      name: "Attendance CRM",
+      name: "Attendance",
       cardImage: "assets/card-attendance.png",
       badgeImage: "assets/badge-zippy-circle.png",
       accent: "teal",
