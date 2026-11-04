@@ -38,7 +38,7 @@ const ZENVE_CRM_CONFIG = {
       order: 1,
       name: "Fashion Designers",
       cardImage: "assets/card-fashion.png",
-      badgeImage: "assets/badge-fashion.png",
+      badgeImage: "assets/logo-zenve-fashion.png",
       accent: "fuchsia",
       baseColor: "#D81B60",
       gradient: "linear-gradient(135deg, #FF4081 0%, #D81B60 50%, #C2185B 100%)",
