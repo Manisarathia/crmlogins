@@ -86,28 +86,11 @@
       // Pass card accent glow color
       card.style.setProperty("--card-glow", crm.glowColor || "rgba(255, 255, 255, 0.6)");
 
-      // Render Fashion Card with separate HTML logo and title overlay
-      if (crm.id === "fashion-crm") {
-        card.innerHTML = `
-          <img src="${crm.cardImage}?v=fashion-clean" alt="${crm.name}" class="card-bg-img" loading="eager" />
-          <div class="fashion-overlay">
-            <div class="fashion-logo-container">
-              <img src="assets/logo-zenve-fashion.png" alt="Zenve Fashion" class="fashion-logo" />
-            </div>
-            <div class="fashion-text-container">
-              <span class="fashion-title-line">Fashion</span>
-              <span class="fashion-title-line">Designers</span>
-              <div class="fashion-title-accent"></div>
-            </div>
-          </div>
-        `;
-      } else {
-        // Standard clean single-image card architecture for other CRMs
-        card.innerHTML = `
-          <img src="${crm.cardImage}?v=4k" alt="${crm.name}" class="card-bg-img" loading="eager" />
-          <span class="visually-hidden">${crm.name}</span>
-        `;
-      }
+      // Exactly ONE image inside the card (no duplicate backgrounds or nested containers)
+      card.innerHTML = `
+        <img src="${crm.cardImage}?v=4k" alt="${crm.name}" class="card-bg-img" loading="eager" />
+        <span class="visually-hidden">${crm.name}</span>
+      `;
 
       // Click Event -> Same Tab Navigation
       card.addEventListener("click", function (e) {
