@@ -34,18 +34,17 @@
 }
 
 /* ==============================================================================
-   FULLSCREEN 4K DASHBOARD BACKGROUND
+   FULLSCREEN DASHBOARD BACKGROUND
    ============================================================================== */
 html, body {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-  height: 100dvh;
   margin: 0;
   padding: 0;
   overflow: hidden; /* Zero scrollbars on desktop */
   background-color: var(--bg-base);
-  background-image: url('../images/background-4k.jpg?v=clean-4k');
-  background-size: cover;
+  background-image: url('/images/zenve-background.png');
+  background-size: 100% 100%;
   background-position: center center;
   background-repeat: no-repeat;
   image-rendering: -webkit-optimize-contrast;
